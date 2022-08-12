@@ -1,0 +1,57 @@
+@use "../colors";
+@use "../utils";
+
+input,
+button {
+   padding: 0.5em;
+   border-radius: utils.$border-radius;
+   background-color: colors.$lighter;
+   color: colors.$dark;
+   outline: none;
+
+   @include utils.border;
+   @include utils.basicTransition;
+}
+
+button {
+   cursor: pointer;
+   padding: 0.5em 1.5em;
+   &:hover {
+      background-color: colors.$light;
+   }
+   &:active {
+      transform: scale(0.95);
+   }
+}
+
+input {
+   width: 100%;
+   &:hover,
+   &:focus {
+      background-color: colors.$lightest;
+   }
+   &:focus {
+      border-color: colors.$primary;
+   }
+}
+
+.formkit-outer {
+   margin-bottom: 0.5em;
+}
+.formkit-help,
+.formkit-message {
+   font-size: 0.8rem;
+}
+.formkit-label {
+   font-size: 0.95rem;
+}
+.formkit-help {
+   opacity: 0.6;
+}
+.formkit-message {
+   color: colors.$error-light;
+   list-style-type: none;
+}
+.formkit-input {
+   margin: 0.2em 0;
+}

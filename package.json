@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@vueuse/core": "^9.1.0",
+    "@vueuse/nuxt": "^9.1.0",
+    "nuxt": "npm:nuxt3@latest",
+    "prisma": "^4.2.1"
+  },
+  "dependencies": {
+    "@fontsource/bellota": "^4.5.9",
+    "@fontsource/ibm-plex-sans": "^4.5.12",
+    "@fontsource/ibm-plex-serif": "^4.5.11",
+    "@formkit/nuxt": "1.0.0-beta.10",
+    "@nuxt/image-edge": "1.0.0-27657146.da85542",
+    "@pinia/nuxt": "^0.4.0",
+    "@prisma/client": "^4.2.1",
+    "@tiptap/extension-placeholder": "2.0.0-beta.53",
+    "@tiptap/starter-kit": "2.0.0-beta.191",
+    "@tiptap/vue-3": "2.0.0-beta.96",
+    "@types/node-forge": "^1.0.4",
+    "@vicons/carbon": "^0.12.0",
+    "@vueuse/motion": "2.0.0-beta.18",
+    "jose": "^4.8.3",
+    "mathlive": "^0.78.0",
+    "node-forge": "^1.3.1",
+    "nuxt-icons": "^2.0.1",
+    "pinia": "^2.0.18",
+    "sass": "^1.54.4",
+    "vue-query": "^1.25.2",
+    "zod": "^3.18.0"
+  }
+}

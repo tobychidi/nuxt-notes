@@ -1,0 +1,38 @@
+@use "../colors";
+@use "../utils";
+
+.flex-center {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.sub-section {
+   margin: 1em 0;
+}
+
+.card {
+   @include utils.border;
+   padding: 1em;
+   display: inline-block;
+   border-radius: utils.$border-radius;
+   background-color: colors.$lightest;
+}
+
+.note-card {
+   @include utils.border;
+   padding: 1em;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: utils.$border-radius;
+   background-color: colors.$lightest;
+   color: inherit;
+   height: 8em;
+   width: 6em;
+
+   &:hover {
+      background-color: colors.$lighter;
+      color: inherit;
+   }
+}

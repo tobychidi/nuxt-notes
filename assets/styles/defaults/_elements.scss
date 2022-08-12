@@ -1,0 +1,56 @@
+@use '../colors';
+@use '../utils';
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   color: inherit;
+   font: inherit;
+   line-height: inherit;
+}
+
+body {
+   font-family: "IBM Plex Sans", sans-serif;
+   // background-color: colors.$lighter;
+   color: colors.$dark;
+}
+
+header {
+   padding: .5em 10%;
+   background-color: colors.$lightest;
+   @include utils.border;
+   z-index: utils.$z-index-header;
+}
+
+h1{
+   font-family: "IBM Plex Serif", sans-serif;
+   font-size: 2.5rem;
+   color: colors.$darker;
+}
+
+h2{
+   font-size: 1.8rem;
+}
+
+a{
+   cursor: pointer;
+   text-decoration: none;
+   color: colors.$primary;
+   border-radius: utils.$border-radius;
+
+   @include utils.basicTransition;
+
+   &:hover{
+      color: colors.$primary-darker;
+   }
+}
+
+p{
+   margin: 1em 0;
+
+   &.small{
+      font-size: .9rem;
+   }
+}

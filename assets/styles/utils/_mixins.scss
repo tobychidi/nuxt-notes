@@ -1,0 +1,12 @@
+@use '../colors';
+@mixin basicTransition($duration: 0.3s) {
+   transition: all $duration ease-out;
+}
+
+@mixin border($width: 1px, $t:$width, $r:$width, $b:$width, $l:$width, $color: colors.$border){
+   border: $width solid $color;
+   border-left-width: $l;
+   border-right-width: $r;
+   border-top-width: $t;
+   border-bottom-width: $b;
+}
