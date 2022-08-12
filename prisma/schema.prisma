@@ -41,15 +41,15 @@ model Folder {
 }
 
 model Note {
-  id         Int      @id @default(autoincrement())
-  title      String
-  content    String?
-  authorId   Int
-  author     User     @relation(fields: [authorId], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  Folder     Folder?  @relation(fields: [categoryId], references: [id])
-  categoryId Int?
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  folderId  Int?
+  folder    Folder?  @relation(fields: [folderId], references: [id])
 }
 
 // model Trash {

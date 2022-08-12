@@ -11,7 +11,13 @@ export const loginUser = z.object({
    password: createUser.shape.password,
 });
 
-export const createCategory = z.object({
+export const createFolder = z.object({
    name: z.string(),
    color: z.string().optional(),
+})
+
+export const createNote = z.object({
+   title: z.string(),
+   content: z.string(),
+   folder_id: z.number().int(),
 })

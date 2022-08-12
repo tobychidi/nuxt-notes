@@ -1,21 +1,22 @@
 import { PrismaClient } from "@prisma/client"
 import { sendError } from "h3"
 import { confirmUserContext } from "~~/utils/auth"
-import { createFolder } from "~~/utils/validation/user"
+import { createNote } from "~~/utils/validation/user"
 
 const prisma = new PrismaClient()
 export default defineEventHandler(async (event) => {
    try {
       const user = confirmUserContext(event)
-      const data = createFolder.parse(await useBody(event))
-      const folder = await prisma.folder.create({
+      const data = createNote.parse(await useBody(event))
+      const note = await prisma.note.create({
          data: {
-            name: data.name,
-            color: "green",
-            userId: user.id
+            title: data.title,
+            content: data.content,
+            authorId: user.id,
+            folderId: data.folder_id,
          }
       })
-      return folder
+      return note
    } catch (error) {
       console.log(error)
       sendError(event, createError(error))
