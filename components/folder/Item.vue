@@ -67,7 +67,7 @@ async function handleDelete() {
          </template>
       </v-dropdown>
    </div>
-   <div v-if="isActive && currentNote" class="flex-center note">
+   <div v-if="isActive && currentNote" class="flex-center note" v-motion-pop>
       <t-icon>
          <document-icon />
       </t-icon>

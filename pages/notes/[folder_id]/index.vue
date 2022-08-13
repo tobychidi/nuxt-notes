@@ -22,8 +22,8 @@ refresh()
       <section class="wrpr">
          <h2>{{ folder?.name }}</h2>
          <section class="notes-wrpr">
-            <folder-add-note />
-            <folder-note v-if="folder" v-for="note in folder.notes" :note="note" />
+            <folder-add-note v-motion-pop />
+            <folder-note v-if="folder" v-for="note in folder.notes" :note="note" v-motion-pop />
          </section>
       </section>
    </nuxt-layout>

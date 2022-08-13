@@ -25,7 +25,7 @@ refresh()
       </div>
       <div class="sub-section">
          <folder-new v-model:show="showNewFolder" />
-         <folder-item v-for="folder in folders" :folder="folder" />
+         <folder-item v-for="folder in folders" :folder="folder" v-motion-pop />
       </div>
    </div>
 </template>
