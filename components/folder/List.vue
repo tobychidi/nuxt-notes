@@ -9,10 +9,8 @@ const { apiFetch } = useAuthStore()
 const route = useRoute()
 const { folder_id } = route.params
 
-const folderIdRef = ref(folder_id)
-
 const { data: folders, refresh } = await useLazyAsyncData('folders', () => apiFetch('folders'))
-
+refresh()
 </script>
 
 <template>

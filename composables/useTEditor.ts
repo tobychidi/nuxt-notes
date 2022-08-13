@@ -32,9 +32,7 @@ export function useTEditor({ content, onFocus, onUpdate }: {
             // ImageExtension,
             // Color,
             // FontSize,
-            Placeholder.configure({
-               placeholder: "Write Something..."
-            }),
+            Placeholder,
             StarterKit.configure({
                codeBlock: false,
                blockquote: false,

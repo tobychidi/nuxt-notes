@@ -7,16 +7,32 @@ import { useAuthStore } from '~~/stores/authStore';
 const route = useRoute()
 const { folder_id, note_id } = route.params
 
+const { apiFetch } = useAuthStore()
+
 const initialValue = ref({
-   title: "Untitled",
+   title: "Untitled Note",
    content: ""
+})
+
+const editMode = ref(false)
+
+const { data: note } = await useAsyncData(`note-${note_id}`, () => apiFetch(`notes/${note_id}`))
+
+watchEffect(()=>{
+   if (note.value) {
+      editMode.value = true
+      initialValue.value = {
+         title: note.value.title,
+         content: note.value.content
+      }
+   }
 })
 
 const richText = createInput(EditorInput)
 
 async function handleSubmit(data) {
    try {
-      const res = await useAuthStore().apiFetch('notes', {
+      const res = await apiFetch('notes', {
          method: 'POST',
          body: { ...data, folder_id: parseInt(folder_id as string) }
       })

@@ -14,20 +14,21 @@ const { editor, getVoiceText } = useTEditor({
 </script>
 
 <template>
-   <div>
-      <editor-menu />
+   <div class="wrpr">
+      <editor-menu :editor="editor" />
       <client-only>
-         <div class="editor-wrpr">
-            <editor-content :editor="editor" />
-         </div>
+         <editor-content :editor="editor" />
       </client-only>
    </div>
 </template>
 <style lang="scss" scoped>
 @use 'assets/styles/utils';
-.editor-wrpr{
-   @include utils.border;
-   border-radius: utils.$border-radius;
-   padding: 1em;
+
+.wrpr{
+   display: flex;
+   flex-direction: column;
+   gap: .2em;
 }
+
+
 </style>

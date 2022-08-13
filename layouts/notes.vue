@@ -42,7 +42,7 @@ section {
 
 .column-mid {
    flex-grow: 1;
-   padding: 2em 5em;
+   padding: 2em 7%;
    @include utils.border($b: 0, $t: 0);
 }
 </style>

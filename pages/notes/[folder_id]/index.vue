@@ -12,7 +12,7 @@ const { apiFetch } = useAuthStore()
 // onBeforeMount(async () => {
 //    folder.value = await 
 // })
-const { data: folder, refresh, pending } = await useLazyAsyncData(`folder-${folder_id}`, () => apiFetch(`folders/${folder_id}`))
+const { data: folder, refresh, pending } = await useAsyncData(`folder-${folder_id}`, () => apiFetch(`folders/${folder_id}`))
 
 onMounted(() => {
    refresh()
@@ -25,7 +25,6 @@ onMounted(() => {
          <h2>{{ folder?.name }}</h2>
          <section class="notes-wrpr">
             <folder-add-note />
-            <p v-if="pending">Loadding</p>
             <folder-note v-if="folder" v-for="note in folder.notes" :note="note" />
          </section>
       </section>

@@ -4,16 +4,22 @@ const props = defineProps<{
 }>()
 </script>
 <template>
-   <t-button :class="{ active: active }" @click.prevent>
+   <t-button class="m-button" :class="{ active: active }" @click.prevent>
       <t-icon>
-         <slot name="icon"></slot>
+         <slot></slot>
       </t-icon>
    </t-button>
 </template>
 
 <style lang="scss" scoped>
 @use 'assets/styles/colors';
-.active {
-   background-color: colors.$primary;
+
+.m-button {
+   padding: .3em;
+
+   &.active {
+      background-color: colors.$dark;
+      color: colors.$lightest;
+   }
 }
 </style>
