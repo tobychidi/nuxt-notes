@@ -3,11 +3,14 @@ import { createInput, reset } from '@formkit/vue'
 //@ts-ignore
 import { EditorInput } from '#components'
 import { useAuthStore } from '~~/stores/authStore';
+import { useNavStore } from '~~/stores/navStore';
+import { storeToRefs } from 'pinia';
 
 const route = useRoute()
 const { folder_id, note_id } = route.params
 
 const { apiFetch } = useAuthStore()
+const { currentNote } = storeToRefs(useNavStore())
 
 const initialValue = ref({
    title: "Untitled Note",
@@ -25,11 +28,16 @@ refresh()
 watchEffect(() => {
    if (note.value) {
       editMode.value = true
+      currentNote.value = note.value.title
       initialValue.value = {
          title: note.value.title,
          content: note.value.content
       }
    }
+})
+
+onBeforeUnmount(() => {
+   currentNote.value = null
 })
 
 const richText = createInput(EditorInput)

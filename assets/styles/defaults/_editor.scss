@@ -1,0 +1,39 @@
+@use "../utils";
+@use "../colors";
+
+//Copied Styles
+.ProseMirror {
+   > * + * {
+      margin-top: 0.75em;
+   }
+}
+
+/* Placeholder (at the top) */
+.ProseMirror p.is-editor-empty:first-child::before {
+   content: attr(data-placeholder);
+   float: left;
+   color: #adb5bd;
+   pointer-events: none;
+   height: 0;
+}
+
+
+//My Custom Styles
+.ProseMirror {
+   border-radius: utils.$border-radius;
+   padding: 0 1em;
+   @include utils.border;
+   @include utils.basicTransition;
+
+   &:focus {
+      border-color: colors.$primary;
+      background-color: colors.$lightest;
+   }
+
+   strong{
+      font-weight: 600;
+   }
+   em{
+      font-style: italic;
+   }
+}

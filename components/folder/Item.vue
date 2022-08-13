@@ -1,14 +1,26 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia';
 import { Folder } from '@prisma/client';
-import { Folder as FolderIcon, OverflowMenuVertical as MenuIcon, Edit as EditIcon, Delete as DeleteIcon } from '@vicons/carbon';
+import {
+   Folder as FolderIcon,
+   OverflowMenuVertical as MenuIcon,
+   Edit as EditIcon, Delete as DeleteIcon,
+   Document as DocumentIcon
+} from '@vicons/carbon';
 import { useAuthStore } from '~~/stores/authStore';
+import { useNavStore } from '~~/stores/navStore';
+
 const props = defineProps<{
    folder: Folder;
 }>()
+
 const route = useRoute()
 const { folder_id } = route.params
 
 const { apiFetch } = useAuthStore()
+const { currentNote } = storeToRefs(useNavStore())
+
+const isActive = computed(() => folder_id == useToString(props.folder.id).value)
 
 async function handleDelete() {
    try {
@@ -23,7 +35,7 @@ async function handleDelete() {
 </script>
 <template>
    <div class="wrpr">
-      <nuxt-link :to="`/notes/${folder.id}`" :class="{ active: folder_id == useToString(folder.id).value }">
+      <nuxt-link :to="`/notes/${folder.id}`" :class="{ active: isActive }">
          <div class="flex-center">
             <t-icon>
                <folder-icon />
@@ -55,6 +67,12 @@ async function handleDelete() {
          </template>
       </v-dropdown>
    </div>
+   <div v-if="isActive && currentNote" class="flex-center note">
+      <t-icon>
+         <document-icon />
+      </t-icon>
+      {{ currentNote }}
+   </div>
 </template>
 
 <style lang="scss" scoped>
@@ -78,7 +96,6 @@ a {
       background-color: colors.$lighter;
    }
 }
-
 .menu-wrpr {
    display: flex;
    flex-direction: column;
@@ -89,5 +106,9 @@ a {
       border: none;
       padding: .5em;
    }
+}
+
+.note{
+   padding: .5em 1.5em;
 }
 </style>
