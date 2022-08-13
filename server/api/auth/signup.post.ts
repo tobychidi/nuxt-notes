@@ -1,9 +1,8 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { sendError } from 'h3'
+import { prisma } from '~~/prisma/client'
 import { encrypt } from '~~/utils/auth'
 import { createUser } from "~~/utils/validation/user"
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
    try {

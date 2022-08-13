@@ -44,7 +44,6 @@ export async function signJWT(payload: AuthPayload) {
 
 export async function verifyAccessToken(accessToken: string) {
    try {
-      console.log("=======", public_key)
       const { payload } = await jwtVerify(accessToken, public_key)
 
       return payload as unknown as AuthPayload
