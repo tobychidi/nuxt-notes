@@ -14,9 +14,7 @@ const { apiFetch } = useAuthStore()
 // })
 const { data: folder, refresh, pending } = await useAsyncData(`folder-${folder_id}`, () => apiFetch(`folders/${folder_id}`))
 
-onMounted(() => {
-   refresh()
-})
+refresh()
 </script>
 
 <template>

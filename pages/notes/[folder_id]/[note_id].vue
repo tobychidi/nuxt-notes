@@ -14,11 +14,12 @@ const initialValue = ref({
    content: ""
 })
 
-const editMode = ref(false)
+const editMode = ref<boolean>(false)
 
-const { data: note } = await useAsyncData(`note-${note_id}`, () => apiFetch(`notes/${note_id}`))
-
-watchEffect(()=>{
+const { data: note, refresh } = await useAsyncData(`note-${note_id}`, () => apiFetch(`notes/${note_id}`),{
+   initialCache: false,
+})
+watchEffect(() => {
    if (note.value) {
       editMode.value = true
       initialValue.value = {
@@ -30,7 +31,7 @@ watchEffect(()=>{
 
 const richText = createInput(EditorInput)
 
-async function handleSubmit(data) {
+async function newNote(data) {
    try {
       const res = await apiFetch('notes', {
          method: 'POST',
@@ -40,6 +41,24 @@ async function handleSubmit(data) {
    } catch (error) {
       console.log(error)
    }
+}
+async function editNote(data) {
+   try {
+      const res = await apiFetch(`notes/${note_id}`, {
+         method: 'PUT',
+         body: { ...data, folder_id: parseInt(folder_id as string) }
+      })
+      navigateTo('/notes/' + folder_id)
+   } catch (error) {
+      console.log(error)
+   }
+}
+function handleSubmit(data) {
+   console.log(editMode.value)
+   if (editMode.value) {
+      return editNote(data)
+   }
+   return newNote(data)
 }
 </script>
 
