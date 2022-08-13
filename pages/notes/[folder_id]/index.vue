@@ -7,19 +7,26 @@ const { folder_id } = route.params
 
 
 const { apiFetch } = useAuthStore()
-const folder = ref<Folder>()
+// const folder = ref<Folder>()
 
-onBeforeMount(async () => {
-   folder.value = await apiFetch(`folders/${folder_id}`)
+// onBeforeMount(async () => {
+//    folder.value = await 
+// })
+const { data: folder, refresh, pending } = await useLazyAsyncData(`folder-${folder_id}`, () => apiFetch(`folders/${folder_id}`))
+
+onMounted(() => {
+   refresh()
 })
 </script>
 
 <template>
    <nuxt-layout name="notes">
-      <section>
+      <section class="wrpr">
          <h2>{{ folder?.name }}</h2>
          <section class="notes-wrpr">
             <folder-add-note />
+            <p v-if="pending">Loadding</p>
+            <folder-note v-if="folder" v-for="note in folder.notes" :note="note" />
          </section>
       </section>
    </nuxt-layout>
@@ -30,6 +37,7 @@ onBeforeMount(async () => {
    padding: 3em 1em;
    display: flex;
    flex-wrap: wrap;
+   justify-content: space-between;
    gap: 1em;
    max-width: 100%;
 }

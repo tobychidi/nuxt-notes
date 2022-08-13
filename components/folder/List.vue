@@ -5,11 +5,13 @@ import { useAuthStore } from '~~/stores/authStore';
 
 const showNewFolder = ref(false)
 const { apiFetch } = useAuthStore()
-const folders = ref<Folder[]>()
 
-onBeforeMount(async () => {
-   folders.value = await apiFetch('folders')
-})
+const route = useRoute()
+const { folder_id } = route.params
+
+const folderIdRef = ref(folder_id)
+
+const { data: folders, refresh } = await useLazyAsyncData('folders', () => apiFetch('folders'))
 
 </script>
 
@@ -24,7 +26,7 @@ onBeforeMount(async () => {
          </t-button>
       </div>
       <div class="sub-section">
-         <folder-new v-model:show="showNewFolder" />
+         <folder-new v-model:show="showNewFolder" @add-folder="refresh" />
          <folder-item v-for="folder in folders" :folder="folder" />
       </div>
    </div>

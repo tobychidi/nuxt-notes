@@ -37,6 +37,7 @@ section {
    position: sticky;
    top: 0em;
    padding: 2em;
+   min-width: 250px
 }
 
 .column-mid {

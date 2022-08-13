@@ -4,7 +4,6 @@ import { Folder as FolderIcon } from '@vicons/carbon';
 import { OverflowMenuVertical as MenuIcon } from '@vicons/carbon';
 const props = defineProps<{
    folder: Folder;
-
 }>()
 const route = useRoute()
 const { folder_id } = route.params

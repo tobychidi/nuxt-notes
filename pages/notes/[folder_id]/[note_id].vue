@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { createInput } from '@formkit/vue'
+//@ts-ignore
 import { EditorInput } from '#components'
 import { useAuthStore } from '~~/stores/authStore';
 
@@ -19,7 +20,7 @@ async function handleSubmit(data) {
          method: 'POST',
          body: { ...data, folder_id: parseInt(folder_id as string) }
       })
-      close()
+      navigateTo('/notes/' + folder_id)
    } catch (error) {
       console.log(error)
    }

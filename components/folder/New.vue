@@ -6,7 +6,7 @@ const props = defineProps<{
    show?: boolean,
 }>()
 
-const emits = defineEmits(['update:show'])
+const emits = defineEmits(['update:show', 'addFolder'])
 
 const show = useVModel(props, 'show', emits)
 
@@ -28,6 +28,7 @@ async function handleSubmit(data) {
          method: 'POST',
          body: data
       })
+      emits('addFolder')
       close()
    } catch (error) {
       console.log(error)

@@ -10,6 +10,9 @@ export default defineEventHandler(async (event) => {
       const folder = await prisma.folder.findUnique({
          where: {
             id: parseInt(id)
+         },
+         include: {
+            notes: true,
          }
       })
       return folder
