@@ -12,7 +12,8 @@
 }
 
 .card {
-   @include utils.border;
+   // @include utils.border;
+   @include utils.box-shadow;
    padding: 1em;
    display: inline-block;
    border-radius: utils.$border-radius;
@@ -20,7 +21,8 @@
 }
 
 .note-card {
-   @include utils.border;
+   // @include utils.border;
+   @include utils.box-shadow;
    padding: 1em;
    display: inline-flex;
    align-items: center;
@@ -32,7 +34,6 @@
    width: 6em;
 
    &:hover {
-      background-color: colors.$lighter;
       color: inherit;
    }
 }

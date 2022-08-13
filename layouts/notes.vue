@@ -43,6 +43,8 @@ section {
 .column-mid {
    flex-grow: 1;
    padding: 2em 7%;
+   background-color: rgba(226, 226, 226, 0.169);
+   min-height: 90vh;
    @include utils.border($b: 0, $t: 0);
 }
 </style>

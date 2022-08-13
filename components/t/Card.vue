@@ -32,6 +32,7 @@ const emits = defineEmits(['confirm', 'cancel'])
       padding: 0;
       border: none;
       background-color: transparent;
+      box-shadow: none;
    }
 }
 

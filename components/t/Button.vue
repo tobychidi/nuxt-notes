@@ -45,7 +45,7 @@ const props = defineProps<{
    padding: .16em;
 
    &:hover {
-      background-color: colors.$light;
+      background-color: colors.$lighter;
       // color: colors.$primary;
    }
 

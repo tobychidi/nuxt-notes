@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       'nuxt-icons',
       '@nuxt/image-edge',
       '@vueuse/motion/nuxt',
+      'floating-vue/nuxt',
    ],
    css: [
       'assets/styles/style.scss',

@@ -48,8 +48,8 @@ model Note {
   author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  folderId  Int?
-  folder    Folder?  @relation(fields: [folderId], references: [id])
+  folderId  Int
+  folder    Folder  @relation(fields: [folderId], references: [id])
 }
 
 // model Trash {

@@ -6,7 +6,7 @@ const props = defineProps<{
    show?: boolean,
 }>()
 
-const emits = defineEmits(['update:show', 'addFolder'])
+const emits = defineEmits(['update:show'])
 
 const show = useVModel(props, 'show', emits)
 
@@ -28,7 +28,7 @@ async function handleSubmit(data) {
          method: 'POST',
          body: data
       })
-      emits('addFolder')
+      refreshNuxtData('folders')
       close()
    } catch (error) {
       console.log(error)

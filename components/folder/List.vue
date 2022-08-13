@@ -24,7 +24,7 @@ refresh()
          </t-button>
       </div>
       <div class="sub-section">
-         <folder-new v-model:show="showNewFolder" @add-folder="refresh" />
+         <folder-new v-model:show="showNewFolder" />
          <folder-item v-for="folder in folders" :folder="folder" />
       </div>
    </div>

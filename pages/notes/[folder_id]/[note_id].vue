@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { createInput } from '@formkit/vue'
+import { createInput, reset } from '@formkit/vue'
 //@ts-ignore
 import { EditorInput } from '#components'
 import { useAuthStore } from '~~/stores/authStore';
@@ -16,9 +16,12 @@ const initialValue = ref({
 
 const editMode = ref<boolean>(false)
 
-const { data: note, refresh } = await useAsyncData(`note-${note_id}`, () => apiFetch(`notes/${note_id}`),{
+const { data: note, pending, refresh } = await useAsyncData(`note-${note_id}`, () => apiFetch(`notes/${note_id}`), {
    initialCache: false,
 })
+
+refresh()
+
 watchEffect(() => {
    if (note.value) {
       editMode.value = true
@@ -65,13 +68,15 @@ function handleSubmit(data) {
 <template>
    <nuxt-layout name="notes">
       <section>
-         <form-kit type="form" :value="initialValue" :actions="false" @submit="handleSubmit">
-            <form-kit type="text" name="title" />
-            <form-kit :type="richText" name="content" />
-            <t-button type="primary">
-               Save
-            </t-button>
-         </form-kit>
+         <template v-if="!pending">
+            <form-kit type="form" :value="initialValue" :actions="false" @submit="handleSubmit">
+               <form-kit type="text" name="title" />
+               <form-kit :type="richText" name="content" />
+               <t-button type="primary">
+                  Save
+               </t-button>
+            </form-kit>
+         </template>
       </section>
    </nuxt-layout>
 </template>
