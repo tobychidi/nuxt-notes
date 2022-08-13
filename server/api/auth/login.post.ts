@@ -1,9 +1,8 @@
-import { PrismaClient, User } from "@prisma/client"
+import { User } from "@prisma/client"
 import { sendError } from "h3"
+import { prisma } from "~~/prisma/client"
 import { encrypt, signJWT, signJWTRefreshToken } from "~~/utils/auth"
 import { loginUser } from "~~/utils/validation/user"
-
-const prisma = new PrismaClient()
 
 const userError = createError({
    statusCode: 400, message: "Invalid Username or Password"

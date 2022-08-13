@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { sendError } from "h3";
+import { prisma } from "~~/prisma/client";
 import { signJWT, signJWTRefreshToken, verifyAccessToken, verifyRefreshToken } from "~~/utils/auth";
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
    try {
