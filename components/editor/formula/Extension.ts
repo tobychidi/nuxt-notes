@@ -16,11 +16,11 @@ export default Node.create({
    content: 'inline*',
    // content: 'text*', // important!
    inline: true, // important!
-   selectable: true,
+   // selectable: true,
    isolating: true,
    code: true,
    isLeaf: true,
-   // atom: true,
+   atom: true,
 
    parseHTML() {
       return [

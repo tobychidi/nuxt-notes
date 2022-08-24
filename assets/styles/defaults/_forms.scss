@@ -35,6 +35,14 @@ input {
    }
 }
 
+.input-stealth {
+   background-color: transparent;
+   border-color: transparent;
+   &, &:hover, &:focus{
+      // padding: 0;
+   }
+}
+
 .formkit-outer {
    margin-bottom: 0.5em;
 }

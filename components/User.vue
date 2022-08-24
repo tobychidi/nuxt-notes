@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { OverflowMenuVertical as MenuIcon } from '@vicons/carbon'
-import { useAuthStore } from '~~/stores/authStore';
 
 const { currentUser: user } = useAuthStore();
 </script>

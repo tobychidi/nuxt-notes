@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import { createInput, reset } from '@formkit/vue'
-//@ts-ignore
 import { EditorInput } from '#components'
-import { useAuthStore } from '~~/stores/authStore';
-import { useNavStore } from '~~/stores/navStore';
 import { storeToRefs } from 'pinia';
 
 const route = useRoute()
@@ -12,8 +9,8 @@ const { folder_id, note_id } = route.params
 const { apiFetch } = useAuthStore()
 const { currentNote } = storeToRefs(useNavStore())
 
-const initialValue = ref({
-   title: "Untitled Note",
+const initial = ref({
+   title: "",
    content: ""
 })
 
@@ -28,12 +25,12 @@ refresh()
 watchEffect(() => {
    if (note.value) {
       editMode.value = true
-      currentNote.value = note.value.title
-      initialValue.value = {
+      initial.value = {
          title: note.value.title,
          content: note.value.content
       }
    }
+   currentNote.value = initial.value.title
 })
 
 onBeforeUnmount(() => {
@@ -44,11 +41,11 @@ const richText = createInput(EditorInput)
 
 async function newNote(data) {
    try {
-      const res = await apiFetch('notes', {
+      const newNote = await apiFetch('notes', {
          method: 'POST',
          body: { ...data, folder_id: parseInt(folder_id as string) }
       })
-      navigateTo('/notes/' + folder_id)
+      navigateTo(`/notes/${folder_id}/${newNote.id}`, { replace: true })
    } catch (error) {
       console.log(error)
    }
@@ -59,7 +56,7 @@ async function editNote(data) {
          method: 'PUT',
          body: { ...data, folder_id: parseInt(folder_id as string) }
       })
-      navigateTo('/notes/' + folder_id)
+      refresh()
    } catch (error) {
       console.log(error)
    }
@@ -77,8 +74,8 @@ function handleSubmit(data) {
    <nuxt-layout name="notes">
       <section>
          <template v-if="!pending">
-            <form-kit type="form" :value="initialValue" :actions="false" @submit="handleSubmit">
-               <form-kit type="text" name="title" />
+            <form-kit type="form" :value="initial" :actions="false" @submit="handleSubmit">
+               <form-kit type="text" name="title" placeholder="Untitled Note" />
                <form-kit :type="richText" name="content" />
                <t-button type="primary">
                   Save

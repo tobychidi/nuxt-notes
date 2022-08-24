@@ -9,7 +9,12 @@ export default defineEventHandler(async (event)=>{
       const folders = await prisma.folder.findMany({
          where: {
             userId: user.id
-         }
+         },
+         orderBy: [
+            {
+               createdAt: "asc",
+            }
+         ]
       })
       return folders
    } catch (error) {

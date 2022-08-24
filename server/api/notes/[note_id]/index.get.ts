@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
       const { note_id } = event.context.params
       const note = await prisma.note.findUnique({
          where: {
-            id: parseInt(note_id)
+            id: note_id
          },
       })
       return note

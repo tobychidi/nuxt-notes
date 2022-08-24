@@ -10,9 +10,9 @@ export default defineEventHandler(async (event) => {
       const { note_id } = event.context.params
       const note = await prisma.note.update({
          where: {
-            id: parseInt(note_id),
+            id: note_id,
          },
-         data:{
+         data: {
             title: data.title,
             content: data.content,
             folderId: data.folder_id,

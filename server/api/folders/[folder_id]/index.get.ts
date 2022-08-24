@@ -13,7 +13,11 @@ export default defineEventHandler(async (event) => {
             id: parseInt(folder_id)
          },
          include: {
-            notes: true,
+            notes: {
+               orderBy: {
+                  updatedAt: 'desc'
+               }
+            },
          }
       })
       return folder

@@ -26,22 +26,23 @@ model RefreshToken {
   id        Int      @id @default(autoincrement())
   token     String   @unique
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
 }
 
 model Folder {
-  id     Int     @id @default(autoincrement())
-  name   String  @unique
-  color  String?
-  User   User    @relation(fields: [userId], references: [id])
-  userId Int
-  notes  Note[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  color     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
+  notes     Note[]
 }
 
 model Note {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String
   content   String?
   authorId  Int
@@ -49,7 +50,7 @@ model Note {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   folderId  Int
-  folder    Folder  @relation(fields: [folderId], references: [id])
+  folder    Folder   @relation(fields: [folderId], references: [id])
 }
 
 // model Trash {

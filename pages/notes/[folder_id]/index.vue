@@ -1,29 +1,35 @@
 <script lang="ts" setup>
-import { Folder } from '@prisma/client';
-import { useAuthStore } from '~~/stores/authStore';
 
 const route = useRoute()
 const { folder_id } = route.params
 
-
 const { apiFetch } = useAuthStore()
-// const folder = ref<Folder>()
 
-// onBeforeMount(async () => {
-//    folder.value = await 
-// })
 const { data: folder, refresh, pending } = await useAsyncData(`folder-${folder_id}`, () => apiFetch(`folders/${folder_id}`))
 
 refresh()
+
+async function handleUpdateFolder(data) {
+   try {
+      const res = await apiFetch(`folders/${folder_id}`, {
+         method: 'PUT',
+         body: { ...data }
+      });
+      refresh()
+      refreshNuxtData(`folders`)
+   } catch (error) {
+      console.log(error)
+   }
+}
 </script>
 
 <template>
    <nuxt-layout name="notes">
-      <section class="wrpr">
-         <h2>{{ folder?.name }}</h2>
+      <section v-if="folder" class="wrpr">
+         <t-stealth-input :placeholder="folder.name" :initial="folder" form-key="name" @input="handleUpdateFolder" />
          <section class="notes-wrpr">
             <folder-add-note v-motion-pop />
-            <folder-note v-if="folder" v-for="note in folder.notes" :note="note" v-motion-pop />
+            <folder-note v-for="note in folder.notes" :key="note.title" :note="note" v-motion-pop />
          </section>
       </section>
    </nuxt-layout>
@@ -35,7 +41,7 @@ refresh()
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
-   gap: 1em;
+   gap: 2em;
    max-width: 100%;
 }
 </style>

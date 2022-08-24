@@ -12,12 +12,12 @@ export const loginUser = z.object({
 });
 
 export const createFolder = z.object({
-   name: z.string(),
+   name: z.string().transform(val => { if (val.length == 0) { return "Untitled" } return val }),
    color: z.string().optional(),
 })
 
 export const createNote = z.object({
-   title: z.string(),
+   title: z.string().transform(val => { if (val.length == 0) { return "Untitled Note" } return val }),
    content: z.string(),
    folder_id: z.number().int(),
 })

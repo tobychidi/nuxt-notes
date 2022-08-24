@@ -26,8 +26,6 @@ const emits = defineEmits(['confirm', 'cancel'])
 
 <style lang="scss" scoped>
 .card {
-   font-size: .8rem;
-
    &.no-pad {
       padding: 0;
       border: none;

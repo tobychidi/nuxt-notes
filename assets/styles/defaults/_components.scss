@@ -30,10 +30,24 @@
    border-radius: utils.$border-radius;
    background-color: colors.$lightest;
    color: inherit;
-   height: 8em;
-   width: 6em;
+   height: 9em;
+   width: 7em;
 
    &:hover {
       color: inherit;
+      transform: scale(1.1) translateY(-10%);
+   }
+}
+
+.dropdown-menu {
+   display: flex;
+   flex-direction: column;
+   gap: .2em;
+   padding: .5em;
+   font-size: .9rem;
+
+   button {
+      border: none;
+      padding: .5em;
    }
 }

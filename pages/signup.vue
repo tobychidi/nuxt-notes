@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useAuthStore } from '~~/stores/authStore';
-
 
 async function submitHandler(data) {
    try {

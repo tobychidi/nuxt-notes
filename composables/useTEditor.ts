@@ -10,7 +10,7 @@ import StarterKit from "@tiptap/starter-kit";
 // import TableCell from "@tiptap/extension-table-cell";
 // import TableHeader from "@tiptap/extension-table-header";
 // import TextStyle from "@tiptap/extension-text-style";
-// import FormulaExtension from "./formula/Extension";
+import FormulaExtension from "~/components/editor/formula/Extension";
 // import ImageExtension from "./image/Extension";
 import { useEditor, Content, Editor } from "@tiptap/vue-3";
 
@@ -28,7 +28,7 @@ export function useTEditor({ content, onFocus, onUpdate }: {
    onMounted(()=>{
       editor.value = new Editor({
          extensions: [
-            // FormulaExtension,
+            FormulaExtension,
             // ImageExtension,
             // Color,
             // FontSize,

@@ -28,7 +28,7 @@ section {
    align-items: flex-start;
    position: relative;
    width: 100%;
-   max-width: 140ch;
+   max-width: 150ch;
 }
 
 .column-left,
@@ -37,7 +37,7 @@ section {
    position: sticky;
    top: 0em;
    padding: 2em;
-   min-width: 250px
+   min-width: 30ch;
 }
 
 .column-mid {

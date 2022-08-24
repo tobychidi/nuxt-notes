@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Editor } from '@tiptap/vue-3';
-import {TextBold as BoldIcon, TextItalic} from '@vicons/carbon';
+import {TextBold as BoldIcon, TextItalic, FunctionMath} from '@vicons/carbon';
 
    const props = defineProps<{
       editor?: Editor,
@@ -13,6 +13,9 @@ import {TextBold as BoldIcon, TextItalic} from '@vicons/carbon';
       </editor-m-button>
       <editor-m-button :active="editor?.isActive('italic')" @click="editor?.chain().focus().toggleItalic().run()">
          <text-italic />
+      </editor-m-button>
+      <editor-m-button :active="editor?.isActive('italic')" @click="editor?.chain().focus().insertFormula().run()">
+         <function-math />
       </editor-m-button>
    </div>
 </template>
