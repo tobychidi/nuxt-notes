@@ -18,11 +18,11 @@ export default defineNuxtConfig({
       secretKeyP: '',
       secretKeyR: '',
    },
-   autoImports: {
+   imports: {
       dirs: ['stores'],
    },
-   vue:{
-      compilerOptions:{
+   vue: {
+      compilerOptions: {
          isCustomElement: (tag) => tag.includes('math-field')
       }
    }

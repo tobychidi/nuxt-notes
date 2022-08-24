@@ -10,7 +10,7 @@ import { NodeViewWrapper, NodeViewContent, nodeViewProps } from "@tiptap/vue-3";
 import { nextTick, onMounted, ref, toRef, watch, watchEffect } from "vue";
 import { MathfieldElement } from "mathlive";
 import "mathlive/dist/mathlive-fonts.css";
-import "mathlive";
+// import "mathlive";
 
 const props = defineProps(nodeViewProps);
 
